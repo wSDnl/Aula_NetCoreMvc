@@ -1,2 +1,2 @@
-# Aula_NetCoreMvc
+# Aula_Net6CoreMvc
 Aula NetCoreMvc
