@@ -1,0 +1,2 @@
+CRIAR PROJETO VSCODE
+dotnet new mvc -o [nome]
