@@ -15,11 +15,17 @@ namespace NetCore6Mvc.Controllers
 
         public IActionResult List()
         {
-
             var produto = _produtoRepositorio.Produtos;
-
             return View(produto);
 
         }
+
+        public IActionResult Card() 
+        {
+            var cardProduto = _produtoRepositorio.Produtos;
+            return View(cardProduto);
+        }
+
+
     }
 }
