@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using NetCore6Mvc.Context;
+using NetCore6Mvc.Repositories;
+using NetCore6Mvc.Repositories.Interfaces;
 
 namespace NetCore6Mvc;
 public class Startup
@@ -16,6 +18,9 @@ public class Startup
     {
         services.AddDbContext<AppDbContext>(options =>
         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+        services.AddTransient<IProdutoRepository, ProdutoRepository>();
+        services.AddTransient<ICategoriasRepository, CategoriasRepository>();
 
         services.AddControllersWithViews();
     }
