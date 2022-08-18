@@ -1,0 +1,98 @@
+﻿@model IEnumerable<NetCore6Mvc.Models.Produto>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<!-- Page header -->
+<div class="page-header page-header-default">
+    <div class="page-header-content">
+        <div class="page-title">
+            <h4>Produtos</h4>
+        </div>
+
+    </div>
+
+    <div class="breadcrumb-line">
+        <ul class="breadcrumb">
+            <li><a href="/Home/Index"><i class="icon-home2 position-left"></i> Home</a></li>
+            <li class="active">Produtos</li>
+        </ul>
+    </div>
+</div>
+<!-- /page header -->
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DescricaoCurta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DescricaoDetalhada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImagemUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImagemMini)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Disponivel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QtdeEstoque)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoriaId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescricaoCurta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescricaoDetalhada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImagemUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImagemMini)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Disponivel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QtdeEstoque)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoriaId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProdutoId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ProdutoId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProdutoId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
