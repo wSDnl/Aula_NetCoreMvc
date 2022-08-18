@@ -5,7 +5,8 @@ namespace NetCore6Mvc.Repositories.Interfaces
     public interface IProdutoRepository
     {
         IEnumerable<Produto> Produtos { get; }
-        IEnumerable<Produto> ProdutoFavorito { get; }
+
+        Produto GetProdutoById(int produtoId);
 
     }
 }
