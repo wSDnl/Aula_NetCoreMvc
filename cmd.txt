@@ -1,2 +1,13 @@
 CRIAR PROJETO VSCODE
 dotnet new mvc -o [nome]
+
+
+
+///*** MIGRATION
+
+UTILIZAR O MIGRATIONS DO EF CORE PELO CONSOLE VS
+CRIAR
+add-migration [nome]
+
+REMOVER
+remove-migration
