@@ -21,6 +21,7 @@ public class Startup
 
         services.AddTransient<IProdutoRepository, ProdutoRepository>();
         services.AddTransient<ICategoriasRepository, CategoriasRepository>();
+        services.AddTransient<IUserRepository, UserRepository>();
 
         services.AddControllersWithViews();
     }

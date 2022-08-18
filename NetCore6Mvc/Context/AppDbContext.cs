@@ -12,6 +12,7 @@ namespace NetCore6Mvc.Context
 
         public DbSet<Categorias> Categorias { get; set; }
         public DbSet<Produto> Produtos { get; set; }
+        public DbSet<User> Users { get; set; }
 
     }
 }
