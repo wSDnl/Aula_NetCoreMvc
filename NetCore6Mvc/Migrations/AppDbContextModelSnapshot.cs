@@ -21,6 +21,32 @@ namespace NetCore6Mvc.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("NetCore6Mvc.Models.CarrinhoCompraItem", b =>
+                {
+                    b.Property<int>("CarrinhoCompraItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CarrinhoCompraItemId"), 1L, 1);
+
+                    b.Property<string>("CarrinhoCompraId")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("ProdutoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantidade")
+                        .HasColumnType("int");
+
+                    b.HasKey("CarrinhoCompraItemId");
+
+                    b.HasIndex("ProdutoId");
+
+                    b.ToTable("CarrinhoCompraItens");
+                });
+
             modelBuilder.Entity("NetCore6Mvc.Models.Categorias", b =>
                 {
                     b.Property<int>("CategoriaId")
@@ -127,6 +153,17 @@ namespace NetCore6Mvc.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("NetCore6Mvc.Models.CarrinhoCompraItem", b =>
+                {
+                    b.HasOne("NetCore6Mvc.Models.Produto", "Produto")
+                        .WithMany()
+                        .HasForeignKey("ProdutoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Produto");
                 });
 
             modelBuilder.Entity("NetCore6Mvc.Models.Produto", b =>
