@@ -51,34 +51,64 @@ namespace NetCore6Mvc.Models
 
         /// *** METODOS *** ///
 
+				/// **** ADICIONA AO CARRINHO
+		public void AdicionarAoCarrinho(Produto produto)
+		{
+			var carrinhoCompraItem = _context.CarrinhoCompraItens.SingleOrDefault(
+				s=>	s.Produto.ProdutoId == produto.ProdutoId &&
+				s.CarrinhoCompraId == CarrinhoCompraId
+			);
 
-				public void AdicionarAoCarrinho(Produto produto)
+
+				if (carrinhoCompraItem == null)
 				{
-					var carrinhoCompraItem = _context.CarrinhoCompraItens.SingleOrDefault(
-						s=>	s.Produto.ProdutoId == produto.ProdutoId &&
-						s.CarrinhoCompraId == CarrinhoCompraId
-					);
+					carrinhoCompraItem = new CarrinhoCompraItem
+					{
+						CarrinhoCompraId = CarrinhoCompraId,
+						Produto = produto,
+						Quantidade = 1,
+					};
 
+					_context.CarrinhoCompraItens.Add(carrinhoCompraItem);
 
-						if (carrinhoCompraItem == null)
-						{
-							carrinhoCompraItem = new CarrinhoCompraItem
-							{
-								CarrinhoCompraId = CarrinhoCompraId,
-								Produto = produto,
-								Quantidade = 1,
-							};
-
-							_context.CarrinhoCompraItens.Add(carrinhoCompraItem);
-
-						} else {
-							carrinhoCompraItem.Quantidade++;
-						}
-
-						_context.SaveChanges();
-
+				} else {
+					carrinhoCompraItem.Quantidade++;
 				}
 
+				_context.SaveChanges();
+
+		}
+
+
+
+		/// *** REMOVE PRODUTO DO CARRINHO
+		public int RemoverDoCarrinho(Produto produto)
+		{
+			
+			var carrinhoCompraItem = _context.CarrinhoCompraItens.SingleOrDefault(
+				s=>	s.Produto.ProdutoId == produto.ProdutoId &&
+				s.CarrinhoCompraId == CarrinhoCompraId
+			);
+
+			var quantodadeLocal = 0;
+
+			if (carrinhoCompraItem != null)
+			{
+				if (carrinhoCompraItem.Quantidade > 1)
+				{
+					carrinhoCompraItem.Quantidade--;
+					quantodadeLocal = carrinhoCompraItem.Quantidade;
+				}
+				else
+				{
+					_context.CarrinhoCompraItens.Remove(carrinhoCompraItem);
+				}
+			}
+
+			_context.SaveChanges();
+			return quantodadeLocal;
+
+		}
 
         /// *** /METODOS *** ///
 
