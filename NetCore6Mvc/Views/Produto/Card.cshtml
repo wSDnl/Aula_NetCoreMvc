@@ -3,6 +3,7 @@
 <!-- Page header -->
 <div class="page-header page-header-default">
     <div class="page-header-content">
+
         <div class="page-title">
             <h4>@ViewData["Titulo"]</h4>
         </div>
@@ -12,7 +13,7 @@
     <div class="breadcrumb-line">
         <ul class="breadcrumb">
             <li><a href="/Home/Index"><i class="icon-home2 position-left"></i> Home</a></li>
-            <li class="active">Produtos Cards | Última busca em @ViewData["DataHora"]</li>
+			<li class="active"> Produtos Cards | @Html.Partial("_DataHora") </li>
         </ul>
     </div>
 </div>
@@ -24,27 +25,26 @@
 	<h6> @ViewBag.textoTotalProdutos @ViewBag.TotalProdutos</h6>
 		<hr />
 		@foreach(var produto in Model){
-				<div class="col-lg-3 col-md-6">
-					<div class="thumbnail">
-						<div class="thumb thumb-rounded thumb-slide">
-							<img src="@produto.ImagemMini" alt="">
-							<div class="caption">
-								<span>
-									<a href="List" class="btn bg-success-400 btn-icon btn-xs" data-popup="lightbox"><i class="icon-plus2"></i></a>
-									<a href="Card" class="btn bg-success-400 btn-icon btn-xs"><i class="icon-link"></i></a>
-								</span>
-							</div>
-						</div>
-							
-						<div class="caption text-center">
-							<h6 class="text-semibold no-margin">@produto.Nome | @produto.DescricaoCurta<small class="display-block">@produto.DescricaoDetalhada</small></h6>
-							<ul class="icons-list mt-15">
-								<li>@produto.Valor.ToString("c")</li>
-							</ul>
-						</div>
+		<div class="col-lg-3 col-md-6">
+			<div class="thumbnail">
+				<div class="thumb thumb-rounded thumb-slide">
+					<img src="@produto.ImagemMini" alt="">
+					<div class="caption">
+						<span>
+							<a href="List" class="btn bg-success-400 btn-icon btn-xs" data-popup="lightbox"><i class="icon-plus2"></i></a>
+							<a href="Card" class="btn bg-success-400 btn-icon btn-xs"><i class="icon-link"></i></a>
+						</span>
 					</div>
 				</div>
-		}
+
+				<div class="caption text-center">
+					<h6 class="text-semibold no-margin">@produto.Nome | @produto.DescricaoCurta<small class="display-block">@produto.DescricaoDetalhada</small></h6>
+					<ul class="icons-list mt-15">
+						<li>@produto.Valor.ToString("c")</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+        }
 	</div>
 <!-- /rounded thumbs-->
-

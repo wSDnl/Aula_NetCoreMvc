@@ -6,7 +6,6 @@ namespace NetCore6Mvc.Controllers
     {
         public IActionResult Index()
         {
-
             return View();
         }
     }
