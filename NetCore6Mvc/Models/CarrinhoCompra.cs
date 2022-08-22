@@ -1,4 +1,5 @@
-﻿using NetCore6Mvc.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using NetCore6Mvc.Context;
 
 namespace NetCore6Mvc.Models
 {
@@ -23,8 +24,7 @@ namespace NetCore6Mvc.Models
 		public List<CarrinhoCompraItem> CarrinhoCompraItens { get; set; }
 
 
-
-				public static CarrinhoCompra GetCarrinho(IServiceProvider services)
+		public static CarrinhoCompra GetCarrinho(IServiceProvider services)
 				{
 					// DEFINE UMA SESSÃO
 					ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
@@ -49,9 +49,11 @@ namespace NetCore6Mvc.Models
 
 				}
 
-        /// *** METODOS *** ///
+        
+		
+		/// *** METODOS *** ///
 
-				/// **** ADICIONA AO CARRINHO
+		/// **** ADICIONA AO CARRINHO
 		public void AdicionarAoCarrinho(Produto produto)
 		{
 			var carrinhoCompraItem = _context.CarrinhoCompraItens.SingleOrDefault(
@@ -110,7 +112,46 @@ namespace NetCore6Mvc.Models
 
 		}
 
+
+
+		/// *** GET CARRINHO DE COMPRAS, RETORNA UMA LISTA
+		public List<CarrinhoCompraItem> GetCarrinhoCompraItens()
+		{
+			return CarrinhoCompraItens ?? 
+				(CarrinhoCompraItens = 
+				_context.CarrinhoCompraItens
+				.Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
+				.Include(s => s.Produto)
+				.ToList());
+		}
+
+
+
+        /// *** LIMPAR CARRINHO
+        public void LimparCarrinho()
+        {
+            var carrinhoItens = _context.CarrinhoCompraItens
+                .Where(carrinho => carrinho.CarrinhoCompraId == CarrinhoCompraId);
+
+            _context.CarrinhoCompraItens.RemoveRange(carrinhoItens);
+            _context.SaveChanges();
+
+        }
+
+
+        /// *** RETORNA O VALOR TOTAL DO CARRINHO
+		public decimal GetCarrinhoCompraTotal()
+		{
+			decimal total = _context.CarrinhoCompraItens
+				.Where(c=> c.CarrinhoCompraId == CarrinhoCompraId)
+				.Select(c => c.Produto.Valor * c.Quantidade).Sum();
+
+			return total;
+
+		}
+
+
         /// *** /METODOS *** ///
 
-	}
+    }
 }
