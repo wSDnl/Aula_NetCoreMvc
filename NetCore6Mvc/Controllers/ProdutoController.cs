@@ -22,7 +22,14 @@ namespace NetCore6Mvc.Controllers
 
         public IActionResult Card() 
         {
+            ViewData["Titulo"] = "Produtos Cards";
+            ViewData["DataHora"] = DateTime.Now;
             var cardProduto = _produtoRepositorio.Produtos;
+            var totalProdutos = cardProduto.Count();
+
+            ViewBag.TextoTotalProdutos = "Total de produtos: ";
+            ViewBag.TotalProdutos = totalProdutos;
+
             return View(cardProduto);
         }
 

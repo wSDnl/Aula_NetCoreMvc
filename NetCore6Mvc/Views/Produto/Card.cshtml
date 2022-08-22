@@ -4,7 +4,7 @@
 <div class="page-header page-header-default">
     <div class="page-header-content">
         <div class="page-title">
-            <h4>Produtos Cards</h4>
+            <h4>@ViewData["Titulo"]</h4>
         </div>
 
     </div>
@@ -12,7 +12,7 @@
     <div class="breadcrumb-line">
         <ul class="breadcrumb">
             <li><a href="/Home/Index"><i class="icon-home2 position-left"></i> Home</a></li>
-            <li class="active">Produtos Cards</li>
+            <li class="active">Produtos Cards | Última busca em @ViewData["DataHora"]</li>
         </ul>
     </div>
 </div>
@@ -20,6 +20,9 @@
 
 <!-- Rounded thumbs -->
 	<div class="row">
+
+	<h6> @ViewBag.textoTotalProdutos @ViewBag.TotalProdutos</h6>
+		<hr />
 		@foreach(var produto in Model){
 				<div class="col-lg-3 col-md-6">
 					<div class="thumbnail">
