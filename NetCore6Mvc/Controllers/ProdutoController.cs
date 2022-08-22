@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NetCore6Mvc.Repositories.Interfaces;
+using NetCore6Mvc.ViewModels;
 
 namespace NetCore6Mvc.Controllers
 {
@@ -17,6 +18,13 @@ namespace NetCore6Mvc.Controllers
         {
             var produto = _produtoRepositorio.Produtos;
             return View(produto);
+
+            //// View MODEL NÃO FUNCIONOU
+            //var produtosListViewModel = new ProdutoListViewModel();
+            //produtosListViewModel.Produtos = _produtoRepositorio.Produtos;
+            //produtosListViewModel.CategoriaAtual = "categoria Atual";
+
+            //return View(produtosListViewModel);
 
         }
 
