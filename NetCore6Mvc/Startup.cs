@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using NetCore6Mvc.Context;
+using NetCore6Mvc.Models;
 using NetCore6Mvc.Repositories;
 using NetCore6Mvc.Repositories.Interfaces;
 
@@ -22,6 +23,8 @@ public class Startup
         services.AddTransient<IProdutoRepository, ProdutoRepository>();
         services.AddTransient<ICategoriasRepository, CategoriasRepository>();
         services.AddTransient<IUserRepository, UserRepository>();
+        services.AddScoped(sp => CarrinhoCompra.GetCarrinho(sp));
+
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
         services.AddControllersWithViews();
@@ -44,14 +47,16 @@ public class Startup
         {
             app.UseExceptionHandler("/Home/Error");
             // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-            app.UseHsts();
-            app.UseSession();
         }
+
         app.UseHttpsRedirection();
 
         app.UseStaticFiles();
         app.UseRouting();
         app.UseAuthorization();
+
+        app.UseHsts();
+        app.UseSession();
 
         app.UseEndpoints(endpoints =>
         {

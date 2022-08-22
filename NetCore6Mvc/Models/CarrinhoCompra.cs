@@ -6,9 +6,6 @@ namespace NetCore6Mvc.Models
 	public class CarrinhoCompra
 	{
 
-
-
-
 		private readonly AppDbContext _context;
 
 		public CarrinhoCompra(AppDbContext context)
@@ -23,31 +20,34 @@ namespace NetCore6Mvc.Models
 
 		public List<CarrinhoCompraItem> CarrinhoCompraItens { get; set; }
 
+		
 
 		public static CarrinhoCompra GetCarrinho(IServiceProvider services)
-				{
-					// DEFINE UMA SESSÃO
-					ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
+		{
+			// DEFINE UMA SESSÃO
+			//ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
+
+            ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
 
 
-					// OBTEM UM SERVIÇO DO TIPO DO NOSSO CONTEXTO
-					var context = services.GetService<AppDbContext>();
+            // OBTEM UM SERVIÇO DO TIPO DO NOSSO CONTEXTO
+            var context = services.GetService<AppDbContext>();
 
 
-					// OBTER OU GERAR O ID DO CARRINHO
-					string carrinhoId = session.GetString("CarrinhoId") ?? Guid.NewGuid().ToString();
+			// OBTER OU GERAR O ID DO CARRINHO
+			string carrinhoId = session.GetString("CarrinhoId") ?? Guid.NewGuid().ToString();
 
 
-					// ATRIBUI O ID DO CARRINHO NA SESSÃO
-					session.SetString("CarrinhoId", carrinhoId);
+			// ATRIBUI O ID DO CARRINHO NA SESSÃO
+			session.SetString("CarrinhoId", carrinhoId);
 
 
-					return new CarrinhoCompra(context)
-					{
-						CarrinhoCompraId = carrinhoId
-					};
+			return new CarrinhoCompra(context)
+			{
+				CarrinhoCompraId = carrinhoId
+			};
 
-				}
+		}
 
         
 		
@@ -80,7 +80,6 @@ namespace NetCore6Mvc.Models
 				_context.SaveChanges();
 
 		}
-
 
 
 		/// *** REMOVE PRODUTO DO CARRINHO
