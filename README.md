@@ -15,3 +15,6 @@ Com os conceitos aprendidos você estará apto a criar seus próprios sites usan
 
 O curso foi migrado integralmente para usar a ASP .NET Core 6 no ambiente do .NET 6.0.
 
+
+
+
