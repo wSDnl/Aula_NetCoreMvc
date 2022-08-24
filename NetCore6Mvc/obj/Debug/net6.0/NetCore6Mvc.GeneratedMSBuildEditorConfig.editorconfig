@@ -15,7 +15,15 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\tiago\Desktop\Aula\Aula_NetCoreMvc\NetCore6Mvc
 build_property._RazorSourceGeneratorDebug = 
 
+<<<<<<< HEAD
+[C:/xampp/htdocs/2.Clones/Aula_NetCoreMvc/NetCore6Mvc/Views/CarrinhoCompra/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FycmluaG9Db21wcmFcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/xampp/htdocs/2.Clones/Aula_NetCoreMvc/NetCore6Mvc/Views/Home/Index.cshtml]
+=======
 [C:/Users/tiago/Desktop/Aula/Aula_NetCoreMvc/NetCore6Mvc/Views/Home/Index.cshtml]
+>>>>>>> f1077122e33f9a4c21c6a4c62db4800a39f72b79
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 

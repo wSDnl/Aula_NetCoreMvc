@@ -1,0 +1,39 @@
+﻿@model CarrinhoCompraViewModel
+@*@model IEnumerable<NetCore6Mvc.Models.CarrinhoCompra>*@
+
+<div class="row">
+	<div class="table-responsive">
+		<table class="table" id="tblCarrinhoDeCompras">
+			<thead>
+				<tr>
+					<th>Quantidade</th>
+					<th>Produto</th>
+					<th>R$ Unit.</th>
+					<th>SubTotal</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach( var item in Model.CarrinhoCompra.CarrinhoCompraItens){
+					<tr>
+						<td>@item.Quantidade</td>
+						<td>@item.Produto.DescricaoCurta</td>
+						<td>@item.Produto.Valor.ToString("c")</td>
+						<td>@((item.Quantidade * item.Produto.Valor).ToString("c"))</td>
+						<td align="center"><a asp-controller="CarrinhoCompra" asp-action="RemoverDoCarrinho" asp-route-produto="@item.Produto.ProdutoId">Delete</a></td>
+					</tr>
+				}
+			</tbody>
+			<tfoot>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>Total</td>
+					<td>@Model.CarrinhoCompraTotal.ToString("c")</td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+</div>
+<!-- /basic table -->
