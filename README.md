@@ -14,3 +14,4 @@ Você vai aprender a implementar o padrão MVC, definir as entidades do modelo d
 Com os conceitos aprendidos você estará apto a criar seus próprios sites usando os principais recursos da ASP .NET Core MVC a tecnologia mais moderna e atual da Microsoft para desenvolvimento web.
 
 O curso foi migrado integralmente para usar a ASP .NET Core 6 no ambiente do .NET 6.0.
+
